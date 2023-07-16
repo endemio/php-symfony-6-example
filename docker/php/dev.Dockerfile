@@ -4,6 +4,16 @@ FROM php:8.1-fpm as dev
 # Install apcu
 RUN pecl install apcu
 
+# Set user/group
+ENV USER=ubuntu
+ENV GROUP=ubuntu
+
+RUN groupadd -g 1000 ${GROUP} && \
+    useradd -d /home/${USER} -s /bin/bash -u 1000 -g 1000 ${USER}
+
+RUN mkdir /home/${USER}
+RUN chown -R ${USER}:${GROUP} /home/${USER}
+
 # Install php extensions
 RUN apt-get update -y && apt-get install -y \
         curl \
@@ -41,3 +51,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Set working directory
 WORKDIR /var/www
+
+USER ${USER}
+
+# CMD ["php","-S", "0.0.0.0:8000", "-t", "./public"]
