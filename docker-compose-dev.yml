@@ -1,0 +1,40 @@
+# docker-compose
+# Use it when you developing symfony application
+version: "3.6"
+
+networks:
+  back:
+    driver: bridge
+    internal: true
+  front:
+    external:
+      name: front
+
+x-common-variables: &common-variables
+  # Main symfony settings
+  APP_ENV: "${APP_ENV}"
+  APP_SECRET: "${APP_SECRET}"
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: docker/php/dev.Dockerfile
+    ports:
+      - "${EXTERNAL_PORT:-8080}:8000"
+    environment:
+      <<: *common-variables
+    volumes:
+      - ./app:/var/www   # Make volume for application sources
+      - ./var:/var/www/var  # Make volume for application /var (to see what happening)
+                            # in cache and logs without having go to container
+    networks:
+      - front
+      - back
+    # Set size limit for logs at docker container up to 2x1Gb
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1G"
+        max-file: "2"
+        tag: app.main
