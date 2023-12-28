@@ -54,4 +54,4 @@ WORKDIR /var/www
 
 USER ${USER}
 
-# CMD ["php","-S", "0.0.0.0:8000", "-t", "./public"]
+CMD ["php","-S", "0.0.0.0:8000", "-t", "./public"]
