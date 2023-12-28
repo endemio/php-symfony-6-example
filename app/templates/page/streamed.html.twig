@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Streamed response{% endblock %}
+
+{% block body %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('button').click(function () {
+                var lastResponseLength = false;
+
+                $('#stream-started').show();
+                $('#stream-output').empty();
+                $('#stream-output').show();
+
+                setTimeout(startStreaming(lastResponseLength), 1500);
+            });
+
+            function startStreaming(lastResponseLength) {
+                xhr = new XMLHttpRequest();
+                xhr.open('GET', '{{ (path('app_twig_streamed_ajax')) }}', true);
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+                xhr.onprogress = function(e) {
+                    var response = e.currentTarget.response;
+                    var output = lastResponseLength === false
+                        ? response
+                        : response.substring(lastResponseLength);
+
+                    lastResponseLength = response.length;
+
+                    $('#stream-output').append('<p>'+output+'</p>');
+                };
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        $('#stream-output').append('<p>Completed!</p>');
+                    }
+                };
+
+                xhr.send();
+            }
+        });
+    </script>
+
+    <hr />
+    <button id="test">Текст</button>
+    <p id="stream-started" style="display: none;">Поток ...</p>
+    <code id="stream-output" style="display: none;"></code>
+    <hr />
+{% endblock %}
