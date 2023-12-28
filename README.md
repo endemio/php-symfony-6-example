@@ -1,14 +1,12 @@
-### Symfony 6 example
+### Symfony 6 Twig Global example
 
-Это README будет пополняться в зависимости от новых branches добавляемых в репозиторий
-
-#### Step 0
+Файлы для статьи [Использование глобальных переменных в Twig](https://dev.endemic.ru/article/twig-global-variables)
 
 Репозиторий с уже готовой конфигурацией для быстрого старта. Для запуска выполните следеющие действия
 
 1. Сколнируйте репозиторий себе 
 ```shell
-git clone https://github.com/endemio/php-symfony-6-example.git php-symfony-git-test --branch step0
+git clone https://github.com/endemio/php-symfony-6-example.git php-symfony-git-test --branch twig-global-variables 
 ```
 где **php-symfony-git-test** - папка, в которую хотите скопировать проект
 
@@ -31,18 +29,6 @@ docker-compose build
 docker-compose up -d
 ```
 
-4. Заходим в контейнер и устанавливаем файлы из composer.json
-```shell
-$ docker-compose exec app bash
-root@1eq123e12:/vat/www# composer install
-```
-
-4. Запускаем сервер
-```shell
-root@1eq123e12:/vat/www# php -S 0.0.0.0:8000 -t ./public
-[Sun Jan 16 12:40:39 2023] PHP 8.1.21 Development Server (http://0.0.0.0:8000) started
-```
-Все ОК, проверяем теперь через http://0.0.0.0:8080/. Должны увидеть что-то подобное
-![Browser view](./docs/step0-browser.png "Title")
+Все ОК, проверяем теперь [тут](http://0.0.0.0:8080/global-config) или [тут](http://0.0.0.0:8080/global-service)
 
 
