@@ -1,0 +1,11 @@
+api_v1:
+  resource: ../src/Controller/v1
+  type: annotation
+  name_prefix: app_v1_
+  prefix: /api/v1/
+
+api_v2:
+  resource: ../src/Controller/v2
+  type: annotation
+  name_prefix: app_v2_
+  prefix: /api/v2/
