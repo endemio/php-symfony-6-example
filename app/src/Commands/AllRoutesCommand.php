@@ -16,6 +16,8 @@ use Symfony\Component\Routing\RouterInterface;
 class AllRoutesCommand extends Command
 {
 
+    const MASK = "|%-20.20s |%-51.50s | %-30.30s  |\n";
+
     public function __construct(private RouterInterface $router)
     {
         parent::__construct();
@@ -24,20 +26,22 @@ class AllRoutesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        print '123';
-
         $collection = $this->router->getRouteCollection();
         $allRoutes = $collection->all();
-        foreach ($allRoutes as $key => $value) {
 
-            $data = $value->getDefaults();
-            print_r($data);
-
-//            if (u($name)->startsWith('blog_')) {
-                echo $key.' - '.$value->getDefault('_controller').' - '.$value->getPath().PHP_EOL;
-//            }
+        if (!count($allRoutes)) {
+            echo "\033[31mRoutes not found!\e[39m", PHP_EOL;
+            return Command::SUCCESS;
         }
 
+        echo '+', str_repeat('-', 21), '+', str_repeat('-', 52), '+', str_repeat('-', 33), '+', PHP_EOL;
+        printf(self::MASK, 'Name', 'Class::function', 'Uri', PHP_EOL);
+        echo '+', str_repeat('-', 21), '+', str_repeat('-', 52), '+', str_repeat('-', 33), '+', PHP_EOL;
+        foreach ($allRoutes as $key => $value) {
+            printf(self::MASK, $key, $value->getDefault('_controller'), $value->getPath());
+        }
+
+        echo '+', str_repeat('-', 21), '+', str_repeat('-', 52), '+', str_repeat('-', 33), '+', PHP_EOL;
 
         return Command::SUCCESS;
     }
