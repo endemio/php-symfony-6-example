@@ -1,4 +1,4 @@
-### Symfony 6 Twig Global example
+### Symfony 6 All routes
 
 Файлы для статьи [Получение списка всех роутов](https://dev.endemic.ru/article/all-routes)
 
