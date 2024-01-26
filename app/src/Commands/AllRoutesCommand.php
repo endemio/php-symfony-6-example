@@ -21,7 +21,6 @@ class AllRoutesCommand extends Command
     public function __construct(private RouterInterface $router)
     {
         parent::__construct();
-        $this->router = $router;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
