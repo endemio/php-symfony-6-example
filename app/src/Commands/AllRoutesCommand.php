@@ -34,14 +34,15 @@ class AllRoutesCommand extends Command
             return Command::SUCCESS;
         }
 
-        echo '+', str_repeat('-', 21), '+', str_repeat('-', 52), '+', str_repeat('-', 33), '+', PHP_EOL;
-        printf(self::MASK, 'Name', 'Class::function', 'Uri', PHP_EOL);
-        echo '+', str_repeat('-', 21), '+', str_repeat('-', 52), '+', str_repeat('-', 33), '+', PHP_EOL;
+        $border = fn() => '+' . str_repeat('-', 21) . '+' . str_repeat('-', 52) .
+            '+' . str_repeat('-', 33) . '+'.PHP_EOL;
+
+        // Draw table with routes
+        echo $border(), sprintf(self::MASK, 'Name', 'Class::function', 'Uri'), $border();
         foreach ($allRoutes as $key => $value) {
             printf(self::MASK, $key, $value->getDefault('_controller'), $value->getPath());
         }
-
-        echo '+', str_repeat('-', 21), '+', str_repeat('-', 52), '+', str_repeat('-', 33), '+', PHP_EOL;
+        echo $border();
 
         return Command::SUCCESS;
     }
