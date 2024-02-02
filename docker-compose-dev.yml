@@ -24,6 +24,9 @@ services:
       - "${EXTERNAL_PORT:-8080}:8000"
     environment:
       <<: *common-variables
+      KEY: "${OPENSSL_FILE_KEY}"
+      CIPHER: "${OPENSSL_FILE_CIPHER}"
+      ALGORITHM: "${OPENSSL_FILE_ALGORITHM}"
     volumes:
       - ./app:/var/www   # Make volume for application sources
       - ./var:/var/www/var  # Make volume for application /var (to see what happening)
