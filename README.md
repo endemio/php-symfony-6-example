@@ -29,6 +29,6 @@ docker-compose build
 docker-compose up -d
 ```
 
-Все ОК, проверяем теперь [тут](http://0.0.0.0:8080/global-config) или [тут](http://0.0.0.0:8080/global-service)
+Все ОК, проверяем теперь [тут](http://0.0.0.0:8080/)
 
 
