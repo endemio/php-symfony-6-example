@@ -1,5 +1,3 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
-    globals:
-        phone: '+7-495-777-77-77'
-        string: '@App\Service\GlobalVariables'
+    form_themes: ['bootstrap_5_layout.html.twig']

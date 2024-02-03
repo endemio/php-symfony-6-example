@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session storing form{% endblock %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row align-items-center vh-100">
+            <div class="col-sm-8 col-md-8 col-lg-6 col-xl-4 mx-auto">
+                <h1>User Registration:</h1>
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
