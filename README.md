@@ -28,20 +28,10 @@ APP_SECRET=lubayadlinnaystroka
 4. Запускаем контейнер
 ```shell
 docker-compose build
+docker-compose run app composer install
 docker-compose up -d
 ```
 
-4. Заходим в контейнер и устанавливаем файлы из composer.json
-```shell
-$ docker-compose exec app bash
-root@1eq123e12:/vat/www# composer install
-```
-
-4. Запускаем сервер
-```shell
-root@1eq123e12:/vat/www# php -S 0.0.0.0:8000 -t ./public
-[Sun Jan 16 12:40:39 2023] PHP 8.1.21 Development Server (http://0.0.0.0:8000) started
-```
 Все ОК, проверяем теперь через http://0.0.0.0:8080/. Должны увидеть что-то подобное
 ![Browser view](./docs/step0-browser.png "Title")
 
