@@ -2,8 +2,10 @@
 
 namespace App\Command;
 
-use App\Entity\Country;
-use App\Entity\President;
+use App\Entity\Clients;
+use App\Entity\SessionConfigurations;
+use App\Entity\SessionMembers;
+use App\Entity\Sessions;
 use Doctrine\Common\Util\ClassUtils;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -32,7 +34,7 @@ class ShowEntitiesCommand extends EntityListCommand
     {
         $entity = $input->getArgument('entity');
 
-        if (!in_array(self::IMPORT_ENTITY . $entity, [Country::class, President::class])) {
+        if (!in_array(self::IMPORT_ENTITY . $entity, [Clients::class, SessionConfigurations::class, Sessions::class, SessionMembers::class])) {
             throw new \ValueError(sprintf('Wrong entity name -> %s', self::IMPORT_ENTITY . $entity));
         }
 
