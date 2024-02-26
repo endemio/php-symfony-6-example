@@ -13,11 +13,11 @@ class SessionMembers
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'sessionMembers')]
+    #[ORM\ManyToOne(targetEntity: Sessions::class, inversedBy: 'sessionMembers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Sessions $session = null;
 
-    #[ORM\ManyToOne(inversedBy: 'sessionMembers')]
+    #[ORM\ManyToOne(targetEntity: Clients::class, inversedBy: 'sessionMembers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Clients $client = null;
 
