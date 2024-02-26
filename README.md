@@ -2,7 +2,7 @@
 
 Репозиторий с уже готовой конфигурацией для быстрого старта. Для запуска выполните следующие действия:
 
-1. Сколнируйте репозиторий себе 
+1. Склонируйте репозиторий себе 
 ```shell
 git clone https://github.com/endemio/php-symfony-6-example.git symfony-command-fix-db-fs --branch command-fix-db-fs
 ```
